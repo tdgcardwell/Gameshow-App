@@ -2,8 +2,9 @@ const qwerty = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 let missed = 0;
 const reset = document.querySelector('.btn__reset')
-let overlay = document.querySelector('.start');
+let overlay = document.querySelector('#overlay');
 const lives = document.querySelector('#scoreboard ol');
+let life = lives.getElementsByTagName("li")
 const heading = document.querySelector('h2');
 
 const phrases = [
@@ -42,8 +43,6 @@ function addPhraseToDisplay(array){
   }
 }
 
-
-
 reset.addEventListener('click', () => {
   // reset everything underneath first
     phrase.innerHTML = '<ul></ul>'
@@ -51,13 +50,10 @@ reset.addEventListener('click', () => {
     missed = 0;
     resetKeys();
   overlay.style.display = "none";
-  // setting it now - important that it is done inside EventListener.
+  // setting the phrase now - important that it is done inside EventListener.
   phraseAsArray = getRandomPhraseAsArray(phrases);
   addPhraseToDisplay(phraseAsArray);
 });
-
-
-
 
 function getRandomPhraseAsArray(array) {
   const i = Math.floor((Math.random() * array.length));
@@ -71,9 +67,6 @@ function getRandomPhraseAsArray(array) {
   const newArray = selected.split("");
   return newArray;
 };
-
-
-
 
 function checkLetter(clickedLetter) {
   const letters = document.querySelectorAll('.letter');
@@ -102,7 +95,6 @@ qwerty.addEventListener('click', (e) => {
   if (!letterFound) {
     missed++;
     i = (5 - missed);
-    life = lives.getElementsByTagName("li")
     life[i].innerHTML = '<img src="images/lostHeart.png" height="35px" width="30px">'
   }
 
@@ -113,11 +105,13 @@ qwerty.addEventListener('click', (e) => {
   if (totalShowing.length === totalLetters.length){
 
     let appropriateMessage = message.win;
+    overlay.className = "win";
     console.log(appropriateMessage);
     heading.textContent = appropriateMessage;
     overlay.style.display = "";
   } else if (missed>=5){
     let appropriateMessage = message.lose;
+    overlay.className = "lose";
     console.log(appropriateMessage);
     heading.textContent = appropriateMessage;
     overlay.style.display = "";
