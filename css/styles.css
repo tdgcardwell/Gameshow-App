@@ -161,3 +161,15 @@ button {
 .lose a {
   color: var(--color-lose);
 }
+
+.four {
+  filter: hue-rotate(300deg);
+}
+
+.three {
+  filter: hue-rotate(200deg);
+}
+
+.two {
+  filter: hue-rotate(159deg);
+}
