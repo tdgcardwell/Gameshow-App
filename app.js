@@ -24,6 +24,7 @@ const message = {
   lose : `Awwww... You Lost.`
 };
 
+// needs to be declared globally, but can't have value set yet.
 let phraseAsArray
 
 function addPhraseToDisplay(array){
@@ -50,6 +51,7 @@ reset.addEventListener('click', () => {
     missed = 0;
     resetKeys();
   overlay.style.display = "none";
+  // setting it now - important that it is done inside EventListener.
   phraseAsArray = getRandomPhraseAsArray(phrases);
   addPhraseToDisplay(phraseAsArray);
 });
@@ -59,12 +61,12 @@ reset.addEventListener('click', () => {
 
 function getRandomPhraseAsArray(array) {
   const i = Math.floor((Math.random() * array.length));
+
+  // Store it as uppercase...
   const selected = phrases[i].toUpperCase();
 
-  // remove this phrase so they get a different one next time
+  // ...then remove the phrase so the user gets a different one next round.
   phrases.splice(i,1);
-
-  // need to fix this so that it removes again next time...
 
   const newArray = selected.split("");
   return newArray;
