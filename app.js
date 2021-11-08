@@ -24,26 +24,7 @@ const message = {
   lose : `Awwww... You Lost.`
 };
 
-const phraseAsArray = getRandomPhraseAsArray(phrases);
-
-reset.addEventListener('click', () => {
-  // reset everything underneath first
-    phrase.innerHTML = '<ul></ul>'
-    resetHearts();
-    missed = 0;
-    resetKeys();
-
-  overlay.style.display = "none";
-  addPhraseToDisplay(phraseAsArray);
-});
-
-
-function getRandomPhraseAsArray(array){
-  const i = Math.floor((Math.random() * array.length));
-  const selected = phrases[i].toUpperCase();
-  const newArray = selected.split("");
-  return newArray;
-};
+let phraseAsArray
 
 function addPhraseToDisplay(array){
   let ul = document.querySelector("#phrase ul");
@@ -59,6 +40,37 @@ function addPhraseToDisplay(array){
     }
   }
 }
+
+
+
+reset.addEventListener('click', () => {
+  // reset everything underneath first
+    phrase.innerHTML = '<ul></ul>'
+    resetHearts();
+    missed = 0;
+    resetKeys();
+  overlay.style.display = "none";
+  phraseAsArray = getRandomPhraseAsArray(phrases);
+  addPhraseToDisplay(phraseAsArray);
+});
+
+
+
+
+function getRandomPhraseAsArray(array) {
+  const i = Math.floor((Math.random() * array.length));
+  const selected = phrases[i].toUpperCase();
+
+  // remove this phrase so they get a different one next time
+  phrases.splice(i,1);
+
+  // need to fix this so that it removes again next time...
+
+  const newArray = selected.split("");
+  return newArray;
+};
+
+
 
 
 function checkLetter(clickedLetter) {
