@@ -88,16 +88,17 @@ qwerty.addEventListener('click', (e) => {
   if (target.tagName === "BUTTON") {
     target.className = "chosen";
     target.disabled = true;
-  }
-  let chosenLetter = target.textContent;
-  let letterFound = checkLetter(chosenLetter);
 
-  if (!letterFound) {
-    missed++;
-    i = (5 - missed);
-    life[i].innerHTML = '<img src="images/lostHeart.png" height="35px" width="30px">'
-  }
+    let chosenLetter = target.textContent;
+    let letterFound = checkLetter(chosenLetter);
 
+    if (!letterFound) {
+      missed++;
+      i = (5 - missed);
+      life[i].innerHTML = '<img src="images/lostHeart.png" height="35px" width="30px">'
+    }
+  }
+  
   // checkWin
   const totalLetters = document.querySelectorAll('.letter');
   const totalShowing = document.querySelectorAll('.show');
