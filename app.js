@@ -111,13 +111,6 @@ qwerty.addEventListener('click', (e) => {
     heading.textContent = appropriateMessage;
     overlay.style.display = "";
 
-    // color changing
-  } else if (missed = 1) {
-      for (let i=0; i<life.length; i++){
-        life[i].className += " four";
-        heading.className += " four";
-      }
-
   }else if (missed>=5){
       let appropriateMessage = message.lose;
       overlay.className = "lose";
